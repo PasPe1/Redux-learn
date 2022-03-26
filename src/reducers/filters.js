@@ -5,7 +5,6 @@ const initialState = {
 }
 
 const filters = (state = initialState, action) => {
-    console.log(action.payload)
     switch (action.type) {
         case 'FILTERS_FETCHING': 
             return {
@@ -24,7 +23,6 @@ const filters = (state = initialState, action) => {
                 filtersLoadingStatus: 'error'
             }
         case 'ACTIVE_FILTER_CHANGED':
-            console.log(action.payload) 
             return {
                 ...state, 
                 activeFilter: action.payload

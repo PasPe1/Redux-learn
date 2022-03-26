@@ -3,13 +3,6 @@ import {useHttp} from '../../hooks/http.hook';
 
 const heroesAdapter = createEntityAdapter();
 
-// const initialState = {
-//     heroes: [],
-//     heroesLoadingStatus: 'idle'
-// }
-
-
-
 const initialState = heroesAdapter.getInitialState({
 
     heroesLoadingStatus: 'idle'
@@ -27,20 +20,10 @@ const heroesSlice = createSlice({
     name: 'heroes',
     initialState,
     reducers: {
-        // heroesFetching: state => {state.heroesLoadingStatus = 'loading'},
-        // heroesFetched: (state, action) => {
-        //     state.heroesLoadingStatus = 'idle';
-        //     state.heroes = action.payload;
-        // },
-        // heroesFetchingError: state => {
-        //     state.heroesLoadingStatus = 'error';
-        // },
         heroCreated: (state, action) => {
-            // state.heroes.push(action.payload);
             heroesAdapter.addOne(state, action.payload);
         },
         heroDeleted: (state, action) => {
-            // state.heroes = state.heroes.filter(item => item.id !== action.payload);
             heroesAdapter.removeOne(state, action.payload);
         }
     },
@@ -49,7 +32,6 @@ const heroesSlice = createSlice({
             .addCase(fetchHeroes.pending, state => {state.heroesLoadingStatus = 'loading'})
             .addCase(fetchHeroes.fulfilled, (state, action) => {
                 state.heroesLoadingStatus = 'idle';
-                // state.heroes = action.payload;
                 heroesAdapter.setAll(state, action.payload)
             })
             .addCase(fetchHeroes.rejected, state => {
@@ -65,7 +47,6 @@ const {selectAll} = heroesAdapter.getSelectors(state => state.heroes)
 
 export const filteredHeroesSelector = createSelector(
     (state) => state.filters.activeFilter,
-    // (state) => state.heroes.heroes,
     selectAll,
     (filter, heroes) => {
         if (filter === 'all') {

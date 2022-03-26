@@ -7,7 +7,6 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-    console.log(action.payload)
     switch (action.type) {
         case 'HEROES_FETCHING':
             return {
@@ -42,7 +41,6 @@ const reducer = (state = initialState, action) => {
                 filtersLoadingStatus: 'error'
             }
         case 'ACTIVE_FILTER_CHANGED':
-            console.log(action.payload) 
             return {
                 ...state, 
                 activeFilter: action.payload
