@@ -1,1 +1,1 @@
-This is test project with hero admin panel!
+This is my pet project with hero admin panel!
